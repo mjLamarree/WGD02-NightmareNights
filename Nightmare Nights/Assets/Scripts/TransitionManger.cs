@@ -7,6 +7,7 @@ public class TransitionManger : MonoBehaviour
 {
  
 
+
     public void LoadScene(int sceneIndex)
     {
       
