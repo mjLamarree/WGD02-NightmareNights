@@ -7,7 +7,7 @@ public class EnenmyChase : MonoBehaviour
     public float aggroRange;
     public float moveSpeed;
     public Transform mobHomeLocation;
-    private Collider2D[] overlapColliders;
+    public Collider2D[] overlapColliders;
     private int playerLocationInArray;
     private bool isPlayerInRange;
 
@@ -17,6 +17,7 @@ public class EnenmyChase : MonoBehaviour
     {
 
         LookForPlayers();
+
         if (isPlayerInRange)
         {
             ChasePlayer();
