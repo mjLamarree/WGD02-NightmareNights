@@ -9,6 +9,12 @@ public class EnemyHealth : MonoBehaviour
     public int regenRate;
     private int damageCounter;
     private int regenCount;
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();  
+    }
 
     public void Update()
     {
@@ -52,6 +58,17 @@ public class EnemyHealth : MonoBehaviour
             currentHP += 1;
         }
         
+    }
+
+    public IEnumerator KnockedBack(Vector2 kbDirection, float multiplier)
+    {
+        
+        rb.velocity = new Vector2(0, 0);
+        Vector2 kbForce = new Vector2(kbDirection.x * multiplier, kbDirection.y * multiplier);
+        rb.AddForce(kbForce, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.25f);
+        rb.velocity = new Vector2(0, 0);
+       
     }
     
     

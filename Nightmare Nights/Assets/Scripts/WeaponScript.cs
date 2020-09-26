@@ -5,12 +5,13 @@ using UnityEngine;
 public class WeaponScript : MonoBehaviour
 {
     public int damageDealt;
-    public int weaponSpeed;
+    public float knockbackMultipler;
     public GameObject Player;
     public Vector2 swingHitBoxSize;
+    public Vector3 hitBoxOffset;
 
-
-    private Vector3 lastHitBoxPosition;
+    //private Vector3 lastHitBoxPosition;
+    private SpriteRenderer sr;
     public Collider2D[] overlapColliders;
     private bool hitBoxFlipped = false;
     private Animator anim;
@@ -18,14 +19,23 @@ public class WeaponScript : MonoBehaviour
 
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        lastHitBoxPosition = Player.GetComponent<Transform>().localPosition.normalized;
+        //lastHitBoxPosition = Player.GetComponent<Transform>().localPosition.normalized;
     }
 
     
     void Update()
     {
-        MoveHitBox();
+        if(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+        {
+
+        }
+        else
+        {
+            MoveHitBox();
+        }
+        
         CheckToFlipHitBox();
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -41,22 +51,22 @@ public class WeaponScript : MonoBehaviour
         {
             if (overlapColliders[i].CompareTag("monster"))
             {
-                overlapColliders[i].GetComponent<EnemyHealth>().TakeDamage(damageDealt);
+                overlapColliders[i].GetComponent<EnemyHealth>().StartCoroutine(overlapColliders[i].GetComponent<EnemyHealth>().KnockedBack(KnockbackDirection(), knockbackMultipler));
+                overlapColliders[i].GetComponent<EnemyHealth>().TakeDamage(damageDealt);             
             }
             
         }
     }
+
     public void MoveHitBox()
     {
-        float moveX = Input.GetAxisRaw("Horizontal"); 
+        float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        Vector3 offset = new Vector3(moveX,moveY, 0).normalized;
-
-        lastHitBoxPosition = transform.localPosition + offset;
-        transform.localPosition = new Vector3(Mathf.Clamp(lastHitBoxPosition.x,-1,1), Mathf.Clamp(lastHitBoxPosition.y,-1,1), 0).normalized;
-       
+        Vector3 newHitBoxPosition = new Vector3(hitBoxOffset.x * moveX, hitBoxOffset.y * moveY, 0).normalized;
+        transform.localPosition = newHitBoxPosition;
     }
+
     public void CheckToFlipHitBox()
     {
         if (Input.GetAxisRaw("Horizontal") != 0 && hitBoxFlipped)
@@ -87,4 +97,39 @@ public class WeaponScript : MonoBehaviour
         Gizmos.DrawCube(transform.position, swingHitBoxSize);        
     }
     
+    public Vector2 KnockbackDirection()
+    {
+        float x = 0;
+        float y = 0;
+        if (transform.localPosition.x > 0)
+        {
+            x = 1;
+        }
+        else if(transform.localPosition.x < 0)
+        {
+            x = -1;
+        }
+        else
+        {
+            x = 0;
+        }
+
+        if(transform.localPosition.y > 0)
+        {
+            y = 1;
+        }
+        else if(transform.localPosition.y < 0)
+        {
+            y = -1;
+        }
+        else
+        {
+            y = 0;
+        }
+
+        return new Vector2(x, y);
+        
+    
+    }
+
 }
