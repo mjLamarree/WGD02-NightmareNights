@@ -27,14 +27,7 @@ public class EnemyHealth : MonoBehaviour
             regenCount++;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Weapon") && damageCounter == 0)
-        {
-            TakeDamage(collision.GetComponent<WeaponScript>().damageDealt);
-            damageCounter++;
-        }
-    }
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -44,16 +37,7 @@ public class EnemyHealth : MonoBehaviour
             regenCount = 0;
         }
 
-        if (collision.CompareTag("Weapon"))
-        {
-            damageCounter = 0;
-        }
     }
-
-
-
-
-
 
     public void TakeDamage(int damage)
     {

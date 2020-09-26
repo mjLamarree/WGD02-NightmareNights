@@ -7,6 +7,8 @@ public class DungeonPlayerCharacter : MonoBehaviour
     public float moveSpeed;
     private Vector2 moveDirection;
     public Rigidbody2D rb;
+    public float moveX;
+    public float moveY;
 
     public void Update()
     {
@@ -20,8 +22,8 @@ public class DungeonPlayerCharacter : MonoBehaviour
 
     public void GetPlayerInputs()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        moveX = Input.GetAxisRaw("Horizontal");
+        moveY = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector2(moveX, moveY).normalized;
     }
 
@@ -29,4 +31,6 @@ public class DungeonPlayerCharacter : MonoBehaviour
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
+
+
 }
