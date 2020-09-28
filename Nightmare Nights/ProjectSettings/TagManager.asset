@@ -44,6 +44,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Light
+    uniqueID: 2757076509
+    locked: 0
+  - name: Wall
+    uniqueID: 1823271305
+    locked: 0
+  - name: Decorations
+    uniqueID: 3747066521
+    locked: 0
   - name: Fog
     uniqueID: 1377512221
     locked: 0
