@@ -7,6 +7,8 @@ TagManager:
   - Enemy Base
   - monster
   - HurtBox
+  - SecondAreaTopRight
+  - Button
   layers:
   - Default
   - TransparentFX

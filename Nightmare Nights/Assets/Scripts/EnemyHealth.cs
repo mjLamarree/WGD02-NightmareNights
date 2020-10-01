@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public int id;
     public int maxHP;
     public int currentHP;
     public int regenRate;

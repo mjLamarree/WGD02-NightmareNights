@@ -12,18 +12,18 @@ public class FirstAreaWalls : MonoBehaviour
 
     private void Start()
     {
-        FirstAreaEvents.current.onEncounterTrigger += MakeDoorsAppear;
-        FirstAreaEvents.current.onButtonTrigger += MakeDoorsDisappear;
+        FirstAreaEvents.current.onEncounterTrigger += MakeWallsAppear;
+        FirstAreaEvents.current.onButtonTrigger += MakeWallsDisappear;
     }
 
 
-    private void MakeDoorsAppear()
+    private void MakeWallsAppear()
     {
         EncounterWall.GetComponent<TilemapRenderer>().enabled = true;
         EncounterWall.GetComponent<TilemapCollider2D>().enabled = true;
     }
 
-    private void MakeDoorsDisappear()
+    private void MakeWallsDisappear()
     {
         EncounterWall.GetComponent<TilemapRenderer>().enabled = false;
         EncounterWall.GetComponent<TilemapCollider2D>().enabled = false;
