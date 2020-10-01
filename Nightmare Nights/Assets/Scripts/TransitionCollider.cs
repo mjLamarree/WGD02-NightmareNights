@@ -6,11 +6,27 @@ using UnityEngine.SceneManagement;
 public class TransitionCollider : MonoBehaviour
 {
 
-    public Scene nextScene;
+    [SerializeField]
+    private int sceneIndex;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        StartCoroutine(StartTransition());
     }
+
+    IEnumerator StartTransition()
+    {
+        WalkingDownStairsAnimation();
+
+        yield return new WaitForSeconds(1.0f);
+
+        SceneManager.LoadSceneAsync(sceneIndex);
+
+    }
+
+    private void WalkingDownStairsAnimation()
+    {
+        //Add Walking down stairs animation
+    } 
+
 }
