@@ -1543,7 +1543,7 @@ PrefabInstance:
     - target: {fileID: 4266030774235910301, guid: e0d4259743142be4aafd8a79e84d115c,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4266030774235910301, guid: e0d4259743142be4aafd8a79e84d115c,
         type: 3}
@@ -2715,6 +2715,7 @@ GameObject:
   - component: {fileID: 1577350966}
   - component: {fileID: 1577350968}
   - component: {fileID: 1577350969}
+  - component: {fileID: 1577350970}
   m_Layer: 0
   m_Name: Exit
   m_TagString: Untagged
@@ -2910,6 +2911,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c773cd74033f02140b3ee8bf27572403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1577350970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577350964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4153280aa8eb14cb7611fff0f9c462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneIndex: 2
 --- !u!1 &1602212614 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4266030774235910288, guid: e0d4259743142be4aafd8a79e84d115c,
