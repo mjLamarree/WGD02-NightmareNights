@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class EnemyData : MonoBehaviour
 {
     public int maxHP;
@@ -13,10 +13,13 @@ public class EnemyData : MonoBehaviour
     public float aggroRange;
     public Transform mobHome;
 
+    public Rigidbody2D rb;
     public Collider2D[] nearbyColliders;
+    public NavMeshAgent agent;
     public int regenRate = 1;
     public bool isPlayerInRange;
     public int playerLocationInArray;
+    public bool canMove = true;
 
     public void TakeDamage(int damageAmount)
     {
@@ -44,6 +47,14 @@ public class EnemyData : MonoBehaviour
 
     }
 
+    public void SetUpReferences()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     public void NearbyColliders()
     {
         nearbyColliders = Physics2D.OverlapCircleAll(transform.position, aggroRange);
@@ -57,6 +68,21 @@ public class EnemyData : MonoBehaviour
             }
         }
         isPlayerInRange = false;
+    }
+
+    public void StartKnockBack(Vector2 kbDir, float power)
+    {
+        StartCoroutine(KnockedBack(kbDir, power));
+    }
+    public IEnumerator KnockedBack(Vector2 kbDirection, float multiplier)
+    {      
+            canMove = false;            
+            rb.velocity = new Vector2(0, 0);
+            Vector2 kbForce = new Vector2(kbDirection.x * multiplier, kbDirection.y * multiplier);
+            rb.AddForce(kbForce, ForceMode2D.Impulse);
+            yield return new WaitForSeconds(0.3f);
+            rb.velocity = new Vector2(0, 0);
+            canMove = true;       
     }
     public Vector2 KnockbackDirection(Vector2 kb)
     {

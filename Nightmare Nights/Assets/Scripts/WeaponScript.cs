@@ -51,8 +51,8 @@ public class WeaponScript : MonoBehaviour
         {
             if (overlapColliders[i].CompareTag("monster"))
             {
-                overlapColliders[i].GetComponent<EnemyHealth>().StartCoroutine(overlapColliders[i].GetComponent<EnemyHealth>().KnockedBack(KnockbackDirection(), knockbackMultipler));
-                overlapColliders[i].GetComponent<EnemyHealth>().TakeDamage(damageDealt);             
+                overlapColliders[i].GetComponent<EnemyData>().TakeDamage(damageDealt);
+                overlapColliders[i].GetComponent<EnemyData>().StartKnockBack(KnockbackDirection(), knockbackMultipler);
             }
             
         }

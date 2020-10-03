@@ -14,8 +14,8 @@ public class DungeonPlayerCharacter : MonoBehaviour
     public bool isPlayerMoving;
     public Vector2 playerDashPower;
 
-    private bool canPlayerMove = true;
-    private bool canTakeDamage = true;
+    public bool canPlayerMove = true;
+    public bool canTakeDamage = true;
     private bool isPlayerDashing;
 
     private Vector2 controlVector = new Vector2(0,0);
@@ -90,6 +90,7 @@ public class DungeonPlayerCharacter : MonoBehaviour
 
     public void StartKnockBack(Vector2 kb, float power)
     {
+        
         StartCoroutine(KnockedBack(kb, power));
     }
 
@@ -97,12 +98,14 @@ public class DungeonPlayerCharacter : MonoBehaviour
     {
         if (canTakeDamage)
         {
+            Debug.Log(kbDirection + "  " + multiplier);
             canPlayerMove = false;
             canTakeDamage = false;
             rb.velocity = new Vector2(0, 0);
             Vector2 kbForce = new Vector2(kbDirection.x * multiplier, kbDirection.y * multiplier);
+            Debug.Log(kbForce);
             rb.AddForce(kbForce, ForceMode2D.Impulse);
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.3f);
             rb.velocity = new Vector2(0, 0);
             canTakeDamage = true;
             canPlayerMove = true;
