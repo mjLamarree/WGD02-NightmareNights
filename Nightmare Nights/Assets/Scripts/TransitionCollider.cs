@@ -16,6 +16,7 @@ public class TransitionCollider : MonoBehaviour
 
     IEnumerator StartTransition()
     {
+
         WalkingDownStairsAnimation();
 
         yield return new WaitForSeconds(1.0f);
