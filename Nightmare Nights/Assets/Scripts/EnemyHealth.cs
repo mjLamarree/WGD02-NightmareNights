@@ -49,6 +49,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHP -= damage;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
     }
 
     public IEnumerator HealOverTime(int regenRate)

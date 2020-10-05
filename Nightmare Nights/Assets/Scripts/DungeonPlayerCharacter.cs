@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,6 +80,7 @@ public class DungeonPlayerCharacter : MonoBehaviour
         if (canTakeDamage)
         {
             currentHp -= damage;
+            currentHp = Mathf.Clamp(currentHp, 0, maxHp);
         }
         
     }
