@@ -6,44 +6,26 @@ public class WeaponScript : MonoBehaviour
 {
     public int damageDealt;
     public float knockbackMultipler;
+    public float attackCooldown;
+    public bool canAttack = true;
     public GameObject Player;
     public Vector2 swingHitBoxSize;
     public Vector3 hitBoxOffset;
 
-    //private Vector3 lastHitBoxPosition;
-    private SpriteRenderer sr;
+ 
+    public SpriteRenderer sr;
     public Collider2D[] overlapColliders;
-    private bool hitBoxFlipped = false;
-    private Animator anim;
+    public bool hitBoxFlipped = false;
+    public Animator anim;
     
 
-    void Start()
+
+    public void SetUpReferences()
     {
-        sr = GetComponent<SpriteRenderer>();
+        sr = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        //lastHitBoxPosition = Player.GetComponent<Transform>().localPosition.normalized;
     }
-
     
-    void Update()
-    {
-        if(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
-        {
-
-        }
-        else
-        {
-            MoveHitBox();
-        }
-        
-        CheckToFlipHitBox();
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            AttackWithWeapon();
-        }
-    }
-
-
     public void AttackWithWeapon()
     {
         overlapColliders = Physics2D.OverlapBoxAll(transform.position, swingHitBoxSize, 0);
@@ -55,6 +37,24 @@ public class WeaponScript : MonoBehaviour
                 overlapColliders[i].GetComponent<EnemyData>().StartKnockBack(KnockbackDirection(), knockbackMultipler);
             }
             
+        }
+    }
+    public IEnumerator AttackCooldownTimer()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+    }
+
+    public bool CheckToMoveHitBox()
+    {
+        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 

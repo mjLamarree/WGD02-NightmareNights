@@ -37,7 +37,7 @@ public class DungeonPlayerCharacter : MonoBehaviour
             MovePlayer();
         }
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) && canPlayerMove)
         {
             PlayerDash();
         }
