@@ -88,23 +88,20 @@ public class DungeonPlayerCharacter : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void StartKnockBack(Vector2 kb, float power)
+    public void StartKnockBack(Vector2 kb)
     {
         
-        StartCoroutine(KnockedBack(kb, power));
+        StartCoroutine(KnockedBack(kb));
     }
 
-    public IEnumerator KnockedBack(Vector2 kbDirection, float multiplier)
+    public IEnumerator KnockedBack(Vector2 kbDirection)
     {
         if (canTakeDamage)
         {
-            Debug.Log(kbDirection + "  " + multiplier);
             canPlayerMove = false;
             canTakeDamage = false;
             rb.velocity = new Vector2(0, 0);
-            Vector2 kbForce = new Vector2(kbDirection.x * multiplier, kbDirection.y * multiplier);
-            Debug.Log(kbForce);
-            rb.AddForce(kbForce, ForceMode2D.Impulse);
+            rb.AddForce(kbDirection, ForceMode2D.Impulse);
             yield return new WaitForSeconds(0.3f);
             rb.velocity = new Vector2(0, 0);
             canTakeDamage = true;

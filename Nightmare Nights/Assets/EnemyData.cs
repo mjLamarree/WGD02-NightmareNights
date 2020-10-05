@@ -70,53 +70,101 @@ public class EnemyData : MonoBehaviour
         isPlayerInRange = false;
     }
 
-    public void StartKnockBack(Vector2 kbDir, float power)
+    public void StartKnockBack(Vector2 kbDir)
     {
-        StartCoroutine(KnockedBack(kbDir, power));
+        StartCoroutine(KnockedBack(kbDir));
     }
-    public IEnumerator KnockedBack(Vector2 kbDirection, float multiplier)
+    public IEnumerator KnockedBack(Vector2 kbDirection)
     {      
             canMove = false;
             agent.isStopped = true;
             rb.velocity = new Vector2(0, 0);
-            Vector2 kbForce = new Vector2(kbDirection.x * multiplier, kbDirection.y * multiplier);
-            rb.AddForce(kbForce, ForceMode2D.Impulse);
+            rb.AddForce(kbDirection, ForceMode2D.Impulse);
             yield return new WaitForSeconds(0.3f);
             rb.velocity = new Vector2(0, 0);
             canMove = true;
-            agent.isStopped = false;
+        agent.isStopped = false;
     }
-    public Vector2 KnockbackDirection(Vector2 kb)
+    public Vector2 kbDir(Vector2 dir, int kbPower)
     {
-        float x = 0;
-        float y = 0;
+        int intX;
+        float floatX = 0;
+        int intY;
+        float floatY = 0;
+        Vector2 bagool = new Vector2(0, 0);
 
-        if (kb.x > 0)
+        intX = (int)dir.x;
+        if (intX >= 0 && intX != 1)
         {
-            x = 1;
+            floatX = dir.x - intX;
         }
-        else if (kb.x < 0)
+        else if (intX <= -0 && intX != -1)
         {
-            x = -1;
+            intX = intX * -1;
+            floatX = dir.x + intX;
+        }
+        else if (intX == 1)
+        {
+            bagool.x = 1;
+        }
+        else if (intX == -1)
+        {
+            bagool.x = -1;
         }
         else
         {
-            x = 0;
+            bagool.x = 0;
         }
 
-        if (kb.y > 0)
+        if (floatX >= 0.10)
         {
-            y = 1;
+            floatX += kbPower;
+            bagool.x = floatX;
+
         }
-        else if (kb.y < 0)
+        else if (floatX <= -0.10)
         {
-            y = -1;
+            floatX -= kbPower;
+            bagool.x = floatX;
+        }
+        //switch over too y
+        intY = (int)dir.y;
+        if (intY >= 0 && intY != 1)
+        {
+            floatY = dir.y - intY;
+        }
+        else if (intY <= -0 && intY != -1)
+        {
+            intY = intY * -1;
+            floatY = dir.y + intY;
+        }
+        else if (intY == 1)
+        {
+            bagool.y = 1;
+        }
+        else if (intY == -1)
+        {
+            bagool.y = -1;
         }
         else
         {
-            y = 0;
+            bagool.y = 0;
         }
-        return new Vector2(x, y);
+
+        if (floatY >= 0.10)
+        {
+            floatY += kbPower;
+            bagool.y = floatY;
+        }
+        else if (floatY <= -0.10)
+        {
+            floatY -= kbPower;
+            bagool.y = floatY;
+        }
+
+        Debug.Log(bagool);
+
+        return bagool;
 
 
     }
