@@ -76,13 +76,15 @@ public class EnemyData : MonoBehaviour
     }
     public IEnumerator KnockedBack(Vector2 kbDirection, float multiplier)
     {      
-            canMove = false;            
+            canMove = false;
+            agent.isStopped = true;
             rb.velocity = new Vector2(0, 0);
             Vector2 kbForce = new Vector2(kbDirection.x * multiplier, kbDirection.y * multiplier);
             rb.AddForce(kbForce, ForceMode2D.Impulse);
             yield return new WaitForSeconds(0.3f);
             rb.velocity = new Vector2(0, 0);
-            canMove = true;       
+            canMove = true;
+            agent.isStopped = false;
     }
     public Vector2 KnockbackDirection(Vector2 kb)
     {
