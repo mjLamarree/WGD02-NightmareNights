@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,12 +18,12 @@ public class DungeonPlayerCharacter : MonoBehaviour
     public bool canTakeDamage = true;
     private bool isPlayerDashing;
 
-    private Vector2 controlVector = new Vector2(0,0);
+    private Vector2 controlVector = new Vector2(0, 0);
 
     public void Update()
     {
         GetPlayerInputs();
-        if(currentHp <= 0)
+        if (currentHp <= 0)
         {
             PlayerDied();
         }
@@ -48,7 +47,7 @@ public class DungeonPlayerCharacter : MonoBehaviour
         moveX = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector2(moveX, moveY).normalized;
-        if((moveDirection.x != controlVector.x) || (moveDirection.y != controlVector.y))
+        if ((moveDirection.x != controlVector.x) || (moveDirection.y != controlVector.y))
         {
             isPlayerMoving = true;
         }
@@ -56,7 +55,7 @@ public class DungeonPlayerCharacter : MonoBehaviour
         {
             isPlayerMoving = false;
         }
- 
+
     }
 
     public void MovePlayer()
@@ -80,9 +79,8 @@ public class DungeonPlayerCharacter : MonoBehaviour
         if (canTakeDamage)
         {
             currentHp -= damage;
-            currentHp = Mathf.Clamp(currentHp, 0, maxHp);
         }
-        
+
     }
 
     public void PlayerDied()
@@ -90,23 +88,20 @@ public class DungeonPlayerCharacter : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void StartKnockBack(Vector2 kb, float power)
+    public void StartKnockBack(Vector2 kb)
     {
-        
-        StartCoroutine(KnockedBack(kb, power));
+
+        StartCoroutine(KnockedBack(kb));
     }
 
-    public IEnumerator KnockedBack(Vector2 kbDirection, float multiplier)
+    public IEnumerator KnockedBack(Vector2 kbDirection)
     {
         if (canTakeDamage)
         {
-            Debug.Log(kbDirection + "  " + multiplier);
             canPlayerMove = false;
             canTakeDamage = false;
             rb.velocity = new Vector2(0, 0);
-            Vector2 kbForce = new Vector2(kbDirection.x * multiplier, kbDirection.y * multiplier);
-            Debug.Log(kbForce);
-            rb.AddForce(kbForce, ForceMode2D.Impulse);
+            rb.AddForce(kbDirection, ForceMode2D.Impulse);
             yield return new WaitForSeconds(0.3f);
             rb.velocity = new Vector2(0, 0);
             canTakeDamage = true;
@@ -120,7 +115,8 @@ public class DungeonPlayerCharacter : MonoBehaviour
         isPlayerDashing = false;
         yield return new WaitForSeconds(.30f);
         isPlayerDashing = true;
-                
+
     }
 
 }
+

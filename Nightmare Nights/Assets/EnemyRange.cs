@@ -27,6 +27,7 @@ public class EnemyRange : EnemyData
         {
             Instantiate(projectile, transform.position, Quaternion.identity, transform);
             StartCoroutine(AttackCooldownTimer());
+            agent.SetDestination(nearbyColliders[playerLocationInArray].transform.position);
         }
         else if (!isPlayerInRange && canMove)
         {
@@ -38,7 +39,7 @@ public class EnemyRange : EnemyData
         if (other.CompareTag("Player"))
         {
             Vector2 distance = new Vector2((other.transform.position.x - transform.position.x), (other.transform.position.y - transform.position.y));
-            other.GetComponent<DungeonPlayerCharacter>().StartKnockBack(KnockbackDirection(distance), knockbackPower);
+            other.GetComponent<DungeonPlayerCharacter>().StartKnockBack(kbDir(distance,knockbackPower));
         }
     }
 

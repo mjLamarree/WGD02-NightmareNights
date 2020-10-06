@@ -34,7 +34,7 @@ public class WeaponScript : MonoBehaviour
             if (overlapColliders[i].CompareTag("monster"))
             {
                 overlapColliders[i].GetComponent<EnemyData>().TakeDamage(damageDealt);
-                overlapColliders[i].GetComponent<EnemyData>().StartKnockBack(KnockbackDirection(), knockbackMultipler);
+                overlapColliders[i].GetComponent<EnemyData>().StartKnockBack(KnockbackDirection());
             }
             
         }
@@ -103,11 +103,11 @@ public class WeaponScript : MonoBehaviour
         float y = 0;
         if (transform.localPosition.x > 0)
         {
-            x = 1;
+            x = 1 * knockbackMultipler;
         }
         else if(transform.localPosition.x < 0)
         {
-            x = -1;
+            x = -1 * knockbackMultipler;
         }
         else
         {
@@ -116,11 +116,11 @@ public class WeaponScript : MonoBehaviour
 
         if(transform.localPosition.y > 0)
         {
-            y = 1;
+            y = 1 * knockbackMultipler;
         }
         else if(transform.localPosition.y < 0)
         {
-            y = -1;
+            y = -1 * knockbackMultipler;
         }
         else
         {
