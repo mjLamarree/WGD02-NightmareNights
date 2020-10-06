@@ -84,6 +84,12 @@ public class DungeonPlayerCharacter : MonoBehaviour
 
     }
 
+    public void HealHealth(int healthRecovered)
+    {
+        currentHp += healthRecovered;
+        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+    }
+
     public void PlayerDied()
     {
         Destroy(gameObject);
