@@ -19,7 +19,6 @@ public class FirstAreaEncounterPad : MonoBehaviour
             if (checkAreaParent.transform.GetChild(i).GetComponent<FirstAreaEncounterChecks>().id == id)
             {
                 checkArea = checkAreaParent.transform.GetChild(i).gameObject;
-                Debug.Log(checkArea.name);
             }
         }
 
