@@ -79,6 +79,7 @@ public class DungeonPlayerCharacter : MonoBehaviour
         if (canTakeDamage)
         {
             currentHp -= damage;
+            currentHp = Mathf.Clamp(currentHp, 0, maxHp);
         }
 
     }
