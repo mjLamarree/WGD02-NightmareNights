@@ -14,10 +14,10 @@ public class SecondAreaEventSystem : MonoBehaviour
         current = this;
     }
 
-    public event Action onEncounterTrigger;
-    public void TriggerEncounter()
+    public event Action<int> onEncounterTrigger;
+    public void TriggerEncounter(int id)
     {
-        onEncounterTrigger?.Invoke();
+        onEncounterTrigger?.Invoke(id);
     }
 
 }

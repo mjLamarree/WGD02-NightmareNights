@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 public class SecondAreaEventWalls : MonoBehaviour
 {
 
+    public int id;
+
     [SerializeField]
     private GameObject EncouonterWall;
 
@@ -14,16 +16,21 @@ public class SecondAreaEventWalls : MonoBehaviour
         SecondAreaEventSystem.current.onEncounterTrigger += MakeWallsAppear;
     }
 
-    private void MakeWallsAppear()
+    private void MakeWallsAppear(int id)
     {
-        EncouonterWall.GetComponent<TilemapRenderer>().enabled = true;
-        EncouonterWall.GetComponent<TilemapCollider2D>().enabled = true;
+        if (id == this.id) { 
+            EncouonterWall.GetComponent<TilemapRenderer>().enabled = true;
+            EncouonterWall.GetComponent<TilemapCollider2D>().enabled = true;
+        }
     }
 
-    private void MakeWallsDisappear()
+    private void MakeWallsDisappear(int id)
     {
-        EncouonterWall.GetComponent<TilemapRenderer>().enabled = false;
-        EncouonterWall.GetComponent<TilemapCollider2D>().enabled = false;
+        if(id == this.id)
+        {
+            EncouonterWall.GetComponent<TilemapRenderer>().enabled = false;
+            EncouonterWall.GetComponent<TilemapCollider2D>().enabled = false;
+        }
     }
 
 }
