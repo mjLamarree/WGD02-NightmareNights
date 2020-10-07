@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class SecondAreaEcounterPads : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public int id;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.tag == "Player" 
+            && SecondAreaEventSystem.current.didPlayerTriggerEventAlready[id-1] == false) {
+            SecondAreaEventSystem.current.TriggerEncounter(id);
+            SecondAreaEventSystem.current.didPlayerTriggerEventAlready[id-1] = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
