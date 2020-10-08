@@ -5,6 +5,11 @@ using UnityEngine;
 public class SwordWeapon : WeaponScript
 {
     public KeyCode attackKey;
+    public GameObject swordNorth;
+    public GameObject swordSouth;
+    public GameObject swordEast;
+    public GameObject swordWest;
+
     void Start()
     {
         SetUpReferences();
@@ -13,7 +18,6 @@ public class SwordWeapon : WeaponScript
 
     void Update()
     {
-
         if (CheckToMoveHitBox())
         {
             MoveHitBox();
@@ -30,11 +34,25 @@ public class SwordWeapon : WeaponScript
 
     public IEnumerator PlaySwordAnimation()
     {
-        sr.gameObject.SetActive(true);
-        anim.Play("SwordSlash");
-        yield return new WaitForSeconds(0.7f);
-        sr.gameObject.SetActive(false);
+        if (GetComponentInParent<DungeonPlayerCharacter>().isPlayerWest)
+        {
+            swordWest.GetComponent<swordWest>().PlaySlashAnimation();
+        }
+        else if (GetComponentInParent<DungeonPlayerCharacter>().isPlayerSouth)
+        {
+            swordSouth.GetComponent<swordSouth>().PlaySlashAnimation();
+        }
+        else if (GetComponentInParent<DungeonPlayerCharacter>().isPlayerNorth)
+        {
+            swordNorth.GetComponent<swordNorth>().PlaySlashAnimation();
+        }
+        else if (GetComponentInParent<DungeonPlayerCharacter>().isPlayerEast)
+        {
+            swordEast.GetComponent<swordEast>().PlaySlashAnimation();
+        }
+            yield return new WaitForSeconds(0.7f);
     }
+
 
 
 }

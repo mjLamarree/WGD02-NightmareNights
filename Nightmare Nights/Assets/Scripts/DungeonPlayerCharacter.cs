@@ -1,4 +1,5 @@
-using System.Collections;
+
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,17 +14,28 @@ public class DungeonPlayerCharacter : MonoBehaviour
     public float moveY;
     public bool isPlayerMoving;
     public Vector2 playerDashPower;
+    public Animator anim;
+    public SpriteRenderer sr;
 
     public bool canPlayerMove = true;
     public bool canTakeDamage = true;
     private bool isPlayerDashing;
 
-    private Vector2 controlVector = new Vector2(0, 0);
+    public bool isPlayerNorth;
+    public bool isPlayerSouth;
+    public bool isPlayerEast;
+    public bool isPlayerWest;
+    public bool playerIsFacingDirection;
+
+
+    private Vector2 controlVector = new Vector2(0,0);
 
     public void Update()
     {
         GetPlayerInputs();
-        if (currentHp <= 0)
+        PlayerDirection();
+        ManageAnimations();
+        if(currentHp <= 0)
         {
             PlayerDied();
         }
@@ -47,7 +59,7 @@ public class DungeonPlayerCharacter : MonoBehaviour
         moveX = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector2(moveX, moveY).normalized;
-        if ((moveDirection.x != controlVector.x) || (moveDirection.y != controlVector.y))
+        if((moveDirection.x != controlVector.x) || (moveDirection.y != controlVector.y))
         {
             isPlayerMoving = true;
         }
@@ -55,7 +67,7 @@ public class DungeonPlayerCharacter : MonoBehaviour
         {
             isPlayerMoving = false;
         }
-
+ 
     }
 
     public void MovePlayer()
@@ -84,7 +96,7 @@ public class DungeonPlayerCharacter : MonoBehaviour
 
     }
 
-    public void HealHealth(int healthRecovered)
+        public void HealHealth(int healthRecovered)
     {
         currentHp += healthRecovered;
         currentHp = Mathf.Clamp(currentHp, 0, maxHp);
@@ -97,7 +109,7 @@ public class DungeonPlayerCharacter : MonoBehaviour
 
     public void StartKnockBack(Vector2 kb)
     {
-
+        
         StartCoroutine(KnockedBack(kb));
     }
 
@@ -122,8 +134,69 @@ public class DungeonPlayerCharacter : MonoBehaviour
         isPlayerDashing = false;
         yield return new WaitForSeconds(.30f);
         isPlayerDashing = true;
+                
+    }
+    public void PlayerDirection()
+    {
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
 
+        if (moveX > 0)
+        {
+            isPlayerEast = true;
+            isPlayerWest = false;
+            isPlayerNorth = false;
+            isPlayerSouth = false;
+        }
+        else if (moveX < 0)
+        {
+            isPlayerEast = false;
+            isPlayerWest = true;
+            isPlayerNorth = false;
+            isPlayerSouth = false;
+        }
+        else
+        {
+
+        }
+
+        if (moveY > 0)
+        {
+            isPlayerNorth = true;
+            isPlayerSouth = false;
+            isPlayerEast = false;
+            isPlayerWest = false;
+        }
+        else if (moveY < 0)
+        {
+            isPlayerNorth = false;
+            isPlayerSouth = true;
+            isPlayerEast = false;
+            isPlayerWest = false;
+        }
+    }
+    
+    public void ManageAnimations()
+    {
+        if (isPlayerEast)
+        {
+            sr.flipX = false;
+        }
+        else if (isPlayerWest)
+        {
+            sr.flipX = true;
+        }
+
+        if (isPlayerMoving)
+        {
+            anim.SetBool("IsPlayerMoving", true);
+        }
+        else if (!isPlayerMoving)
+        {
+            anim.SetBool("IsPlayerMoving", false);
+        }
+       
     }
 
 }
-
+>>>>>>> Stashed changes
