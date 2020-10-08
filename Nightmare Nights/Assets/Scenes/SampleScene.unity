@@ -1672,6 +1672,8 @@ MonoBehaviour:
   moveY: 0
   isPlayerMoving: 0
   playerDashPower: {x: 12, y: 12}
+  anim: {fileID: 1351771412}
+  sr: {fileID: 1351771407}
   canPlayerMove: 1
   canTakeDamage: 1
   isPlayerNorth: 0
