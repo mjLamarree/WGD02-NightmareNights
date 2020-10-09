@@ -45,7 +45,7 @@ public class EnemyRange : EnemyData
 
     public void ReturnToHome()
     {
-        agent.SetDestination(mobHome.position);
+        agent.SetDestination(mobHome);
     }
 
     public Vector2 GetTargetForProjectile()

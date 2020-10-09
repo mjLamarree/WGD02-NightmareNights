@@ -11,7 +11,7 @@ public class EnemyData : MonoBehaviour
     public int knockbackPower;
     public int attackCooldown;
     public float aggroRange;
-    public Transform mobHome;
+    public Vector3 mobHome;
 
     public Rigidbody2D rb;
     public Collider2D[] nearbyColliders;
@@ -53,6 +53,7 @@ public class EnemyData : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         rb = GetComponent<Rigidbody2D>();
+        mobHome = gameObject.transform.position;
     }
 
     public void NearbyColliders()

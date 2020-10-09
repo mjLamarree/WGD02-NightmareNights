@@ -44,7 +44,7 @@ public class EnenmyChase : EnemyData
 
     public void ReturnToHome()
     {
-        agent.SetDestination(mobHome.position);
+        agent.SetDestination(mobHome);
     }
 
 

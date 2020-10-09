@@ -9,13 +9,18 @@ public class DungeonPlayerCharacter : MonoBehaviour
     public int currentHp;
     public float moveSpeed;
     private Vector2 moveDirection;
-    public Rigidbody2D rb;
     public float moveX;
     public float moveY;
     public bool isPlayerMoving;
     public Vector2 playerDashPower;
+
+    public Rigidbody2D rb;
     public Animator anim;
     public SpriteRenderer sr;
+    public AudioSource sounds;
+
+    public AudioClip tookDamage;
+    public AudioClip swungSword;
 
     public bool canPlayerMove = true;
     public bool canTakeDamage = true;
@@ -26,15 +31,24 @@ public class DungeonPlayerCharacter : MonoBehaviour
     public bool isPlayerEast;
     public bool isPlayerWest;
     public bool playerIsFacingDirection;
+    public bool playerIsAttacking = false;
 
 
     private Vector2 controlVector = new Vector2(0,0);
 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+        sounds = GetComponent<AudioSource>();
+    }
     public void Update()
     {
         GetPlayerInputs();
         PlayerDirection();
         ManageAnimations();
+        ManageSounds();
         if(currentHp <= 0)
         {
             PlayerDied();
@@ -141,14 +155,14 @@ public class DungeonPlayerCharacter : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        if (moveX > 0)
+        if (moveX > 0 && !playerIsAttacking)
         {
             isPlayerEast = true;
             isPlayerWest = false;
             isPlayerNorth = false;
             isPlayerSouth = false;
         }
-        else if (moveX < 0)
+        else if (moveX < 0  && !playerIsAttacking)
         {
             isPlayerEast = false;
             isPlayerWest = true;
@@ -160,14 +174,14 @@ public class DungeonPlayerCharacter : MonoBehaviour
 
         }
 
-        if (moveY > 0)
+        if (moveY > 0 && !playerIsAttacking )
         {
             isPlayerNorth = true;
             isPlayerSouth = false;
             isPlayerEast = false;
             isPlayerWest = false;
         }
-        else if (moveY < 0)
+        else if (moveY < 0 && !playerIsAttacking)
         {
             isPlayerNorth = false;
             isPlayerSouth = true;
@@ -195,7 +209,30 @@ public class DungeonPlayerCharacter : MonoBehaviour
         {
             anim.SetBool("IsPlayerMoving", false);
         }
+
+        if (canTakeDamage)
+        {
+            anim.SetBool("canTakeDamage", true);
+        }
+        else if (!canTakeDamage)
+        {
+            anim.SetBool("canTakeDamage", false);
+        }
        
+    }
+
+    public void ManageSounds()
+    {
+        if (!canTakeDamage)
+        {
+            sounds.clip = tookDamage;
+            sounds.Play();
+        }
+        if (playerIsAttacking)
+        {
+            sounds.clip = swungSword;
+            sounds.Play();
+        }
     }
 
 }
