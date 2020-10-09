@@ -7,6 +7,7 @@ public class FirstAreaEvents : MonoBehaviour
 {
 
     public int buttonsPressed = 0;
+    public bool isEncounterActive = false;
     public static FirstAreaEvents current;
 
     private void Awake()
