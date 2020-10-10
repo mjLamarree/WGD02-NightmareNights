@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-
+    
     public GameObject keySpotLight;
+
+    [SerializeField] private int id;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,6 +15,7 @@ public class Key : MonoBehaviour
         if(collision.tag == "Player")
         {
             SecondAreaEventSystem.current.obtainedKeys++;
+            SecondAreaEventSystem.current.TriggerEndEncounter(id);
             TurnOffKeyAsset();
             StartCoroutine(DeactivateWholeAsset());
         }
