@@ -28,6 +28,12 @@ public class SecondAreaEventSystem : MonoBehaviour
         onEncounterTrigger?.Invoke(id);
     }
 
+    public event Action<int> onEncounterEndTrigger;
+    public void TriggerEndEncounter(int id)
+    {
+        onEncounterEndTrigger?.Invoke(id);
+    }
+
     public event Action onFountainTrigger;
     public void TriggerFountainEffect()
     {
