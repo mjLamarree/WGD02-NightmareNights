@@ -48,7 +48,6 @@ public class DungeonPlayerCharacter : MonoBehaviour
         GetPlayerInputs();
         PlayerDirection();
         ManageAnimations();
-        ManageSounds();
         if(currentHp <= 0)
         {
             PlayerDied();

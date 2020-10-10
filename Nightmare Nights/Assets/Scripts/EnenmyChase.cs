@@ -13,7 +13,10 @@ public class EnenmyChase : EnemyData
     }
     private void Update()
     {
-        AmIDead();
+        if (AmIDead())
+        {
+            Destroy(gameObject);
+        }
         NearbyColliders();
         ChasePlayer();
     }

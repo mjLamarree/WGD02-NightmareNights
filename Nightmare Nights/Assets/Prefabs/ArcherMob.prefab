@@ -49,12 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   currentHP: 100
-  moveSpeed: 2
+  moveSpeed: 1
   damageDealt: 1
   knockbackPower: 10
   attackCooldown: 3
   aggroRange: 6
-  mobHome: {fileID: 0}
+  mobHome: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
   nearbyColliders: []
   agent: {fileID: 0}

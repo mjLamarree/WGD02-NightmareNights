@@ -25,6 +25,7 @@ public class SwordWeapon : WeaponScript
         CheckToFlipHitBox();
         if (Input.GetKeyDown(attackKey) && canAttack)
         {
+            GetComponentInParent<DungeonPlayerCharacter>().ManageSounds();
             AttackWithWeapon();
             StartCoroutine("PlaySwordAnimation");
             StartCoroutine("AttackCooldownTimer");

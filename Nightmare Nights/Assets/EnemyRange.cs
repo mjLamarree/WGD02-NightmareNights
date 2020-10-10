@@ -16,7 +16,10 @@ public class EnemyRange : EnemyData
     // Update is called once per frame
     void Update()
     {
-        AmIDead();
+        if (AmIDead())
+        {
+            Destroy(gameObject);
+        }
         NearbyColliders();
         FireProjectile();
     }

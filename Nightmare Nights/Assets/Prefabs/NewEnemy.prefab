@@ -47,14 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7087333d00152a469c8123cb07ad97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
-  currentHP: 100
+  maxHP: 2
+  currentHP: 2
   moveSpeed: 3
   damageDealt: 1
   knockbackPower: 5
   attackCooldown: 0
   aggroRange: 10
-  mobHome: {fileID: 0}
+  mobHome: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
   nearbyColliders: []
   agent: {fileID: 0}

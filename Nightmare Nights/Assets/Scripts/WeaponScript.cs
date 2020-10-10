@@ -28,7 +28,8 @@ public class WeaponScript : MonoBehaviour
     
     public void AttackWithWeapon()
     {
-        
+        GetComponentInParent<DungeonPlayerCharacter>().playerIsAttacking = true;
+        GetComponentInParent<DungeonPlayerCharacter>().ManageSounds();
         overlapColliders = Physics2D.OverlapBoxAll(transform.position, swingHitBoxSize, 0);
         for (int i = 0; i < overlapColliders.Length; i++)
         {
@@ -42,8 +43,7 @@ public class WeaponScript : MonoBehaviour
         GetComponentInParent<DungeonPlayerCharacter>().playerIsAttacking = false;
     }
     public IEnumerator AttackCooldownTimer()
-    {
-        GetComponentInParent<DungeonPlayerCharacter>().playerIsAttacking = true;
+    {       
         canAttack = false;
         yield return new WaitForSeconds(attackCooldown);
         GetComponentInParent<DungeonPlayerCharacter>().playerIsAttacking = false;
