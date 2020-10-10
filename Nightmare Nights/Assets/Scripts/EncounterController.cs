@@ -75,6 +75,11 @@ public class EncounterController : MonoBehaviour
             case 1:
                 FirstAreaEvents.current.ButtonTrigger();
                 break;
+            case 2:
+                SecondAreaEventSystem.current.TriggerEndEncounter(id);
+                break;
+            case 3:
+                break;
             default:
                 break;
         }

@@ -14,6 +14,7 @@ public class SecondAreaEventWalls : MonoBehaviour
     private void Start()
     {
         SecondAreaEventSystem.current.onEncounterTrigger += MakeWallsAppear;
+        SecondAreaEventSystem.current.onEncounterEndTrigger += MakeWallsDisappear;
     }
 
     private void MakeWallsAppear(int id)
