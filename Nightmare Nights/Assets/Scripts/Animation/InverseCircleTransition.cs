@@ -20,13 +20,15 @@ public class InverseCircleTransition : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void StartCircleTransitionIn(){
+    private void StartCircleTransitionIn()
+    {
         Animator transitionAnimator = gameObject.GetComponent<Animator>();
         transitionAnimator.SetBool("transitionOut", false);
         transitionAnimator.SetBool("transitionIn", true);
     }
 
-    private void ResetCircleAnimationStates(){
+    private void ResetCircleAnimationStates()
+    {
         Animator transitionAnimator = gameObject.GetComponent<Animator>();
         transitionAnimator.SetBool("transitionOut", false);
         transitionAnimator.SetBool("transitionIn", false);
