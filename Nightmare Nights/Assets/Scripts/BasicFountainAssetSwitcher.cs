@@ -11,12 +11,6 @@ public class BasicFountainAssetSwitcher : MonoBehaviour
     public void SwitchFountainAsset()
     {
         blueFoutain.SetActive(false);
-
-        /*for (int i = 0; i < blueFoutain.transform.childCount; i++)
-        {
-            blueFoutain.transform.GetChild(i).gameObject.SetActive(false);
-        }*/
-
         redFountain.SetActive(true);
     }
 

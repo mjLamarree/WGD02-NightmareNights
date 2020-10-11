@@ -6,23 +6,22 @@ using UnityEngine.SceneManagement;
 public class TransitionCollider : MonoBehaviour
 {
 
-    [SerializeField]
-    private int sceneIndex;
+    [SerializeField] private int sceneIndex;
+    [SerializeField] private GameObject transitionObject;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(StartTransition());
+        if(collision.tag == "Player"){
+            collision.gameObject.GetComponent<DungeonPlayerCharacter>().enabled = false;
+            StartTransitionAnimation();
+        } 
     }
 
-    IEnumerator StartTransition()
-    {
-
-        WalkingDownStairsAnimation();
-
-        yield return new WaitForSeconds(1.0f);
-
-        SceneManager.LoadSceneAsync(sceneIndex);
-
+    private void StartTransitionAnimation(){
+        transitionObject.SetActive(true);
+        Animator transitionAnimator = transitionObject.GetComponent<Animator>();
+        transitionAnimator.SetBool("transitionOut", true);
+        transitionAnimator.SetBool("transitionIn", false);
     }
 
     private void WalkingDownStairsAnimation()
