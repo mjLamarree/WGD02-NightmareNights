@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1364,6 +1364,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 591822978}
     m_Modifications:
+    - target: {fileID: 864212519, guid: 40186de2a8f03f04e978a390b2bedbb4, type: 3}
+      propertyPath: sceneIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6727361758966621674, guid: 40186de2a8f03f04e978a390b2bedbb4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1468,16 +1472,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6727361758966621674, guid: 40186de2a8f03f04e978a390b2bedbb4,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6727361758966621674, guid: 40186de2a8f03f04e978a390b2bedbb4,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 8854007701268552187, guid: 40186de2a8f03f04e978a390b2bedbb4,
         type: 3}
@@ -1834,49 +1828,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 517999146}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &864212517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864212515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c773cd74033f02140b3ee8bf27572403, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &864212518
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864212515}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4c74565f0b3acb248b79382c86a00983, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &864212519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864212515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 802dc2694ea57b04b873d91bc7ea7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &897138702 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5335894522850282421, guid: 98ac84bd66293a7439b0428deef09334,
@@ -3288,7 +3239,6 @@ GameObject:
   - component: {fileID: 1577350967}
   - component: {fileID: 1577350966}
   - component: {fileID: 1577350968}
-  - component: {fileID: 1577350969}
   - component: {fileID: 1577350970}
   - component: {fileID: 1577350971}
   m_Layer: 0
@@ -3474,18 +3424,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &1577350969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577350964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c773cd74033f02140b3ee8bf27572403, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1577350970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3498,7 +3436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4153280aa8eb14cb7611fff0f9c462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneIndex: 2
   transitionObject: {fileID: 864212515}
 --- !u!114 &1577350971
 MonoBehaviour:

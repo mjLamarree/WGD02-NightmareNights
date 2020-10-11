@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 public class TransitionCollider : MonoBehaviour
 {
 
-    [SerializeField] private int sceneIndex;
     [SerializeField] private GameObject transitionObject;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player"){
-            collision.gameObject.GetComponent<DungeonPlayerCharacter>().enabled = false;
+            Debug.Log("Collided with exit");
+            collision.gameObject.GetComponent<DungeonPlayerCharacter>().canPlayerMove = false;
             StartTransitionAnimation();
         } 
     }

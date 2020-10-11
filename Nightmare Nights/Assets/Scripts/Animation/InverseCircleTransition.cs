@@ -1,23 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InverseCircleTransition : MonoBehaviour
 {
+
+    [SerializeField] private int sceneIndex;
+
     // Start is called before the first frame update
     void Start()
     {
-        GameObject player = GameObject.Find("DungeonPlayer");
-        player.GetComponent<DungeonPlayerCharacter>().canPlayerMove = false;
         StartCircleTransitionIn();
     }
 
     public void EndTransitionIn()
     {
         ResetCircleAnimationStates();
-        Destroy(gameObject.GetComponent<InverseCircleTransition>());
-        GameObject.Find("DungeonPlayer").GetComponent<DungeonPlayerCharacter>().canPlayerMove = true;
-        gameObject.SetActive(false);
+        //Destroy(gameObject.GetComponent<InverseCircleTransition>());
+        //gameObject.SetActive(false);
     }
 
     private void StartCircleTransitionIn()
@@ -32,6 +33,11 @@ public class InverseCircleTransition : MonoBehaviour
         Animator transitionAnimator = gameObject.GetComponent<Animator>();
         transitionAnimator.SetBool("transitionOut", false);
         transitionAnimator.SetBool("transitionIn", false);
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadSceneAsync(sceneIndex);
     }
 
 }
