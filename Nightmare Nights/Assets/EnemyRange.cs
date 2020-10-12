@@ -7,10 +7,13 @@ public class EnemyRange : EnemyData
     public GameObject projectile;
     public float projectileSpeed;
     public bool canAttack = true;
+    public Animator anim;
+
     void Start()
     {
         SetUpReferences();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -18,10 +21,21 @@ public class EnemyRange : EnemyData
     {
         if (AmIDead())
         {
-            Destroy(gameObject);
+            StartCoroutine(DeathProcessing());
         }
         NearbyColliders();
         FireProjectile();
+        CheckDestination();
+        if (isTakingDamage)
+        {
+
+
+            anim.SetBool("isTakingDamage", true);
+        }
+        else
+        {
+            anim.SetBool("isTakingDamage", false);
+        }
     }
 
     public void FireProjectile()
@@ -41,6 +55,7 @@ public class EnemyRange : EnemyData
     {
         if (other.CompareTag("Player"))
         {
+            other.GetComponent<DungeonPlayerCharacter>().TakeDamage(damageDealt);
             Vector2 distance = new Vector2((other.transform.position.x - transform.position.x), (other.transform.position.y - transform.position.y));
             other.GetComponent<DungeonPlayerCharacter>().StartKnockBack(kbDir(distance,knockbackPower));
         }
@@ -67,5 +82,27 @@ public class EnemyRange : EnemyData
         canAttack = false;
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
+    }
+    public void CheckDestination()
+    {
+        if (agent.hasPath == true)
+        {
+            anim.SetBool("isMoving", true);
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
+        }
+
+        if (transform.position == mobHome)
+        {
+            agent.ResetPath();
+        }
+    }
+
+    public IEnumerator DeathProcessing()
+    {
+        yield return new WaitForSeconds(0.35f);
+        Destroy(gameObject);
     }
 }

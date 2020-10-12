@@ -13,6 +13,8 @@ public class TransitionCollider : MonoBehaviour
         if(collision.tag == "Player"){
             Debug.Log("Collided with exit");
             collision.gameObject.GetComponent<DungeonPlayerCharacter>().canPlayerMove = false;
+            collision.gameObject.GetComponent<DungeonPlayerCharacter>().rb.velocity = new Vector2(0, 0);
+            collision.gameObject.GetComponent<DungeonPlayerCharacter>().StartStairs();
             StartTransitionAnimation();
         } 
     }

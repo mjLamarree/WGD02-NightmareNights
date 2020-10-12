@@ -9,10 +9,12 @@ public class SwordWeapon : WeaponScript
     public GameObject swordSouth;
     public GameObject swordEast;
     public GameObject swordWest;
+    private AudioSource sound;
 
     void Start()
     {
         SetUpReferences();
+        sound = GetComponent<AudioSource>();
     }
 
 
@@ -25,7 +27,7 @@ public class SwordWeapon : WeaponScript
         CheckToFlipHitBox();
         if (Input.GetKeyDown(attackKey) && canAttack)
         {
-            GetComponentInParent<DungeonPlayerCharacter>().ManageSounds();
+            sound.Play();
             AttackWithWeapon();
             StartCoroutine("PlaySwordAnimation");
             StartCoroutine("AttackCooldownTimer");

@@ -12,7 +12,7 @@ public class EnemyData : MonoBehaviour
     public int attackCooldown;
     public float aggroRange;
     public Vector3 mobHome;
-
+    public bool isTakingDamage = false;
     public Rigidbody2D rb;
     public Collider2D[] nearbyColliders;
     public NavMeshAgent agent;
@@ -20,6 +20,8 @@ public class EnemyData : MonoBehaviour
     public bool isPlayerInRange;
     public int playerLocationInArray;
     public bool canMove = true;
+    public AudioSource sounds;
+
 
     public void TakeDamage(int damageAmount)
     {
@@ -54,6 +56,8 @@ public class EnemyData : MonoBehaviour
         agent.updateUpAxis = false;
         rb = GetComponent<Rigidbody2D>();
         mobHome = gameObject.transform.position;
+        sounds = GetComponent<AudioSource>();
+
     }
 
     public void NearbyColliders()
@@ -76,15 +80,18 @@ public class EnemyData : MonoBehaviour
         StartCoroutine(KnockedBack(kbDir));
     }
     public IEnumerator KnockedBack(Vector2 kbDirection)
-    {      
-            canMove = false;
-            agent.isStopped = true;
-            rb.velocity = new Vector2(0, 0);
-            rb.AddForce(kbDirection, ForceMode2D.Impulse);
-            yield return new WaitForSeconds(0.3f);
-            rb.velocity = new Vector2(0, 0);
-            canMove = true;
+    {
+        isTakingDamage = true;
+        canMove = false;
+        agent.isStopped = true;
+        rb.velocity = new Vector2(0, 0);
+        rb.AddForce(kbDirection, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.3f);
+        rb.velocity = new Vector2(0, 0);
+        isTakingDamage = false;
+        canMove = true;
         agent.isStopped = false;
+
     }
     public Vector2 kbDir(Vector2 dir, int kbPower)
     {
@@ -169,4 +176,10 @@ public class EnemyData : MonoBehaviour
 
 
     }
+
+    public void playDamageSFX()
+    {
+        sounds.Play();
+    }
+
 }

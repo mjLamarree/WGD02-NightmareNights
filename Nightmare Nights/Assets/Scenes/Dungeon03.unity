@@ -21112,6 +21112,70 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.9881134, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &939435692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 939435694}
+  - component: {fileID: 939435693}
+  m_Layer: 0
+  m_Name: NavMesh
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &939435693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939435692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148387606d0ccd84fa326ca211f274ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_OverrideByGrid: 0
+  m_UseMeshPrefab: {fileID: 0}
+  m_CompressBounds: 0
+  m_OverrideVector: {x: 1, y: 1, z: 1}
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 23800000, guid: fc019e8af9239204aaf11edb66ba0d00, type: 2}
+--- !u!4 &939435694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939435692}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1061633598
 GameObject:
   m_ObjectHideFlags: 0
@@ -21517,12 +21581,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   eventId: 3
-  player: {fileID: 0}
-  interactableObject: {fileID: 0}
+  player: {fileID: 2038378943}
+  interactableObject: {fileID: 3681717265517172631}
   spawnDistance: 3.5
-  maxNumberOfEnemies: 0
+  maxNumberOfEnemies: 15
   enemyPool:
-  - {fileID: 0}
+  - {fileID: 4513607613420646514, guid: 1e0893adca138cf42a7fb148eef31e76, type: 3}
+  - {fileID: 8899382049500999500, guid: 2914ea4e7f645934eab6ae99d70960cb, type: 3}
   spawnPoints:
   - {fileID: 451679660}
   - {fileID: 2106974716}
@@ -22756,7 +22821,7 @@ RectTransform:
   m_Children:
   - {fileID: 1434337898}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23320,7 +23385,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 864212519, guid: 40186de2a8f03f04e978a390b2bedbb4, type: 3}
       propertyPath: sceneIndex
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6727361758966621674, guid: 40186de2a8f03f04e978a390b2bedbb4,
         type: 3}
@@ -23499,9 +23564,9 @@ MonoBehaviour:
   player: {fileID: 2038378943}
   interactableObject: {fileID: 315901439}
   spawnDistance: 3.5
-  maxNumberOfEnemies: 0
+  maxNumberOfEnemies: 6
   enemyPool:
-  - {fileID: 0}
+  - {fileID: 4513607613420646514, guid: 1e0893adca138cf42a7fb148eef31e76, type: 3}
   spawnPoints:
   - {fileID: 1758626805}
   - {fileID: 345702693}
@@ -23756,9 +23821,9 @@ MonoBehaviour:
   player: {fileID: 2038378943}
   interactableObject: {fileID: 1666754647}
   spawnDistance: 3.5
-  maxNumberOfEnemies: 0
+  maxNumberOfEnemies: 4
   enemyPool:
-  - {fileID: 0}
+  - {fileID: 8899382049500999500, guid: 2914ea4e7f645934eab6ae99d70960cb, type: 3}
   spawnPoints:
   - {fileID: 1663989056}
   - {fileID: 2074049922}
@@ -24737,7 +24802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1604597470
 Transform:
   m_ObjectHideFlags: 0
@@ -26700,9 +26765,9 @@ MonoBehaviour:
   player: {fileID: 2038378943}
   interactableObject: {fileID: 292253083}
   spawnDistance: 3.5
-  maxNumberOfEnemies: 0
+  maxNumberOfEnemies: 6
   enemyPool:
-  - {fileID: 0}
+  - {fileID: 4513607613420646514, guid: 1e0893adca138cf42a7fb148eef31e76, type: 3}
   spawnPoints:
   - {fileID: 511844824}
   - {fileID: 1686656793}
@@ -29294,14 +29359,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3681717265517172631}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6594686886488212244}
   - {fileID: 5450343343872632842}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3681717265517172631
 GameObject:
@@ -38784,6 +38849,7 @@ GameObject:
   - component: {fileID: 6626611331472370553}
   - component: {fileID: 6626611331472370552}
   - component: {fileID: 6626611331472370559}
+  - component: {fileID: 6626611331472370560}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -38821,6 +38887,22 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &6626611331472370560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626611331472370557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!483693784 &6626611332041025128
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -56103,6 +56185,7 @@ GameObject:
   - component: {fileID: 6626611332041025135}
   - component: {fileID: 6626611332041025129}
   - component: {fileID: 6626611332041025128}
+  - component: {fileID: 6626611332041025136}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -56124,6 +56207,22 @@ Transform:
   m_Father: {fileID: 6626611333219018841}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6626611332041025136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626611332041025134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!156049354 &6626611333219018840
 Grid:
   m_ObjectHideFlags: 0

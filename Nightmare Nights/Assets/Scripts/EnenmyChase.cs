@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class EnenmyChase : EnemyData
 {
-
+    public Animator anim;
 
     private void Start()
     {
         SetUpReferences();
-        rb = gameObject.GetComponent<Rigidbody2D>();   
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
     private void Update()
     {
+
         if (AmIDead())
         {
-            Destroy(gameObject);
+            StartCoroutine(DeathProcessing());
         }
         NearbyColliders();
         ChasePlayer();
+        CheckDestination();
+        if(isTakingDamage)
+        {
+            
+
+            anim.SetBool("isTakingDamage", true);
+        }
+        else
+        {
+            anim.SetBool("isTakingDamage", false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,17 +50,44 @@ public class EnenmyChase : EnemyData
     {
         if (isPlayerInRange && canMove)
         {
-            agent.SetDestination(nearbyColliders[playerLocationInArray].transform.position);           
+            agent.SetDestination(nearbyColliders[playerLocationInArray].transform.position);
+
         }
         else if (!isPlayerInRange && canMove)
         {           
             ReturnToHome();
+
         }
     }
 
     public void ReturnToHome()
     {
-        agent.SetDestination(mobHome);
+
+            agent.SetDestination(mobHome);
+        
+    }
+
+    public void CheckDestination()
+    {
+        if(agent.hasPath == true)
+        {
+            anim.SetBool("isMoving", true);
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
+        }
+
+         if (transform.position == mobHome)
+        {
+            agent.ResetPath();
+        }
+    }
+
+    public IEnumerator DeathProcessing()
+    {
+        yield return new WaitForSeconds(0.35f);
+        Destroy(gameObject);
     }
 
 

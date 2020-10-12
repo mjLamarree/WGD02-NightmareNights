@@ -130,6 +130,8 @@ public class DungeonPlayerCharacter : MonoBehaviour
     {
         if (canTakeDamage)
         {
+            sounds.clip = tookDamage;
+            sounds.Play();
             canPlayerMove = false;
             canTakeDamage = false;
             rb.velocity = new Vector2(0, 0);
@@ -232,6 +234,17 @@ public class DungeonPlayerCharacter : MonoBehaviour
             sounds.clip = swungSword;
             sounds.Play();
         }
+    }
+
+    public void StartStairs()
+    {
+        StartCoroutine(stairs());
+    }
+
+    public IEnumerator stairs()
+    {
+        yield return new WaitForSeconds(.7f);
+        anim.Play("goingDownStairs");
     }
 
 }

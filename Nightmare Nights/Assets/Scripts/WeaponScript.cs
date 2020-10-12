@@ -28,27 +28,27 @@ public class WeaponScript : MonoBehaviour
     
     public void AttackWithWeapon()
     {
-        GetComponentInParent<DungeonPlayerCharacter>().playerIsAttacking = true;
         GetComponentInParent<DungeonPlayerCharacter>().ManageSounds();
+        GetComponentInParent<DungeonPlayerCharacter>().playerIsAttacking = true;
         overlapColliders = Physics2D.OverlapBoxAll(transform.position, swingHitBoxSize, 0);
         for (int i = 0; i < overlapColliders.Length; i++)
         {
             if (overlapColliders[i].CompareTag("monster"))
             {
+                overlapColliders[i].GetComponent<EnemyData>().playDamageSFX();
                 overlapColliders[i].GetComponent<EnemyData>().TakeDamage(damageDealt);
                 overlapColliders[i].GetComponent<EnemyData>().StartKnockBack(KnockbackDirection());
             }
             
         }
-        GetComponentInParent<DungeonPlayerCharacter>().playerIsAttacking = false;
+  
     }
     public IEnumerator AttackCooldownTimer()
     {       
         canAttack = false;
         yield return new WaitForSeconds(attackCooldown);
         GetComponentInParent<DungeonPlayerCharacter>().playerIsAttacking = false;
-        canAttack = true;
-        
+        canAttack = true;       
     }
 
     public bool CheckToMoveHitBox()
@@ -92,7 +92,6 @@ public class WeaponScript : MonoBehaviour
         swingHitBoxSize.x = tempY;
         swingHitBoxSize.y = tempX;
         hitBoxFlipped = true;
-
     }
 
     
@@ -134,7 +133,6 @@ public class WeaponScript : MonoBehaviour
 
         return new Vector2(x, y);
         
-    
     }
 
 }
